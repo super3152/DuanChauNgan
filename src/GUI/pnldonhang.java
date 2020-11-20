@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import BLL.ChuyenDoi;
+import BLL.Excel;
+
 /**
  *
  * @author Takemikazuchi
@@ -16,6 +19,7 @@ public class pnldonhang extends javax.swing.JPanel {
      */
     public pnldonhang() {
         initComponents();
+        BLL.BLLHoaDon.HienThiHoaDon(tblHoaDon, txtTimKiemHD.getText());
     }
 
     /**
@@ -27,35 +31,257 @@ public class pnldonhang extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jPanel22 = new javax.swing.JPanel();
+        jPanel31 = new javax.swing.JPanel();
+        srcdanhsach3 = new javax.swing.JScrollPane();
+        tblHoaDon = new javax.swing.JTable();
+        txtTimKiemHD = new javax.swing.JTextField();
+        jPanel48 = new javax.swing.JPanel();
+        btnTraNoHD = new javax.swing.JButton();
+        jButton14 = new javax.swing.JButton();
+        jButton17 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(980, 620));
         setRequestFocusEnabled(false);
         setVerifyInputWhenFocusTarget(false);
 
-        jLabel1.setText("đơn hàng");
+        jPanel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel10MouseClicked(evt);
+            }
+        });
+
+        jPanel22.setLayout(new java.awt.BorderLayout());
+
+        tblHoaDon.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        tblHoaDon.setFont(new java.awt.Font("Segoe UI", 1, 11)); // NOI18N
+        tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, "", "", null, null, "", null, null},
+                {null, "", "", null, null, "", null, null},
+                {null, "", "", null, null, "", null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Mã Hóa Đơn", "Số Hóa Đơn", "Khách Hàng", "Ngày Tạo", "Tổng Tiền", "Tình Trạng", "Công Nợ", "Nhân viên"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblHoaDon.setDragEnabled(true);
+        tblHoaDon.setFocusable(false);
+        tblHoaDon.setName(""); // NOI18N
+        tblHoaDon.setRowHeight(40);
+        tblHoaDon.setSelectionBackground(new java.awt.Color(204, 204, 204));
+        tblHoaDon.setShowVerticalLines(false);
+        tblHoaDon.getTableHeader().setReorderingAllowed(false);
+        tblHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblHoaDonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tblHoaDonMouseEntered(evt);
+            }
+        });
+        srcdanhsach3.setViewportView(tblHoaDon);
+
+        txtTimKiemHD.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btnTraNoHD.setText("Chi Tiết Hóa Đơn");
+        btnTraNoHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTraNoHDjButton10ActionPerformed(evt);
+            }
+        });
+
+        jButton14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/below_15px.png"))); // NOI18N
+        jButton14.setText("Xuất File Excel");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14jButton10ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel48Layout = new javax.swing.GroupLayout(jPanel48);
+        jPanel48.setLayout(jPanel48Layout);
+        jPanel48Layout.setHorizontalGroup(
+            jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel48Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton14, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnTraNoHD, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+        );
+        jPanel48Layout.setVerticalGroup(
+            jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel48Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel48Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTraNoHD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(8, 8, 8))
+        );
+
+        jButton17.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        jButton17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/filter_edit_20px.png"))); // NOI18N
+        jButton17.setText("Lọc Hóa Đơn");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17jButton11ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel31Layout = new javax.swing.GroupLayout(jPanel31);
+        jPanel31.setLayout(jPanel31Layout);
+        jPanel31Layout.setHorizontalGroup(
+            jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel31Layout.createSequentialGroup()
+                .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(txtTimKiemHD, javax.swing.GroupLayout.DEFAULT_SIZE, 819, Short.MAX_VALUE))
+            .addComponent(srcdanhsach3)
+            .addComponent(jPanel48, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel31Layout.setVerticalGroup(
+            jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel31Layout.createSequentialGroup()
+                .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTimKiemHD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(srcdanhsach3, javax.swing.GroupLayout.DEFAULT_SIZE, 529, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel48, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel22.add(jPanel31, java.awt.BorderLayout.CENTER);
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(222, 222, 222)
-                .addComponent(jLabel1)
-                .addContainerGap(713, Short.MAX_VALUE))
+            .addGap(0, 999, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addComponent(jLabel1)
-                .addContainerGap(482, Short.MAX_VALUE))
+            .addGap(0, 625, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
+
+        if (evt.getClickCount() == 2) {
+            int dongduocchon = tblHoaDon.getSelectedRow();
+            if (dongduocchon < 0) {
+                ThongBaoCanhBao.ThongBao("Bạn Chưa Chọn Hóa Đơn !", "Thông Báo");
+                return;
+            }
+            int MaHD = Integer.parseInt(tblHoaDon.getValueAt(dongduocchon, 0).toString());
+            String SoHoaDon = tblHoaDon.getValueAt(dongduocchon, 1).toString();
+            new pnlbanhang(MaHD, SoHoaDon).setVisible(true);
+            jPanel31.setVisible(false);
+            pnlbanhang bh = new pnlbanhang();
+            jPanel22.add(bh);
+        }
+    }//GEN-LAST:event_tblHoaDonMouseClicked
+
+    private void tblHoaDonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblHoaDonMouseEntered
+
+    private void btnTraNoHDjButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraNoHDjButton10ActionPerformed
+
+        int dongduocchon = tblHoaDon.getSelectedRow();
+        if (dongduocchon < 0) {
+            ThongBaoCanhBao.ThongBao("Bạn Chưa Chọn Phiếu Nhập !", "Thông Báo");
+            return;
+        }
+        int MaHD = Integer.parseInt(tblHoaDon.getValueAt(dongduocchon, 0).toString());
+        double CongNo = ChuyenDoi.ChuyenSangSo(tblHoaDon.getValueAt(dongduocchon, 6).toString());
+        new pnlChitiethoadon(MaHD, CongNo).setVisible(true);
+
+        jPanel31.setVisible(false);
+        pnlChitiethoadon cthd = new pnlChitiethoadon();
+        jPanel22.add(cthd);
+    }//GEN-LAST:event_btnTraNoHDjButton10ActionPerformed
+
+    private void jButton14jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14jButton10ActionPerformed
+
+        Excel excel = new Excel();
+        if (excel.ExportExcel(tblHoaDon)) {
+            ThongBaoThongTin.ThongBao("Xuất File Excel thành công!", "Thông báo");
+        }
+    }//GEN-LAST:event_jButton14jButton10ActionPerformed
+
+    private void jButton17jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton17jButton11ActionPerformed
+
+    private void jPanel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel10MouseClicked
+
+    }//GEN-LAST:event_jPanel10MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnTraNoHD;
+    private javax.swing.JButton jButton14;
+    private javax.swing.JButton jButton17;
+    private javax.swing.JPanel jPanel10;
+    public static javax.swing.JPanel jPanel22;
+    public static javax.swing.JPanel jPanel31;
+    private javax.swing.JPanel jPanel48;
+    private javax.swing.JScrollPane srcdanhsach3;
+    public static javax.swing.JTable tblHoaDon;
+    public static javax.swing.JTextField txtTimKiemHD;
     // End of variables declaration//GEN-END:variables
 }

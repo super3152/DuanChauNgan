@@ -604,7 +604,6 @@ jPanel3.setVisible(false);
         String MatKhau =String.valueOf(txtPass.getPassword());
         if (BLLlogin.Checklogin(TenDangNhap, MatKhau) == true) {
             this.dispose();
-            ThongBaoThongTin.ThongBao("Đăng nhập thành công", "Thông báo");
             frmmain frm = new frmmain();
             frm.setVisible(true);
         }

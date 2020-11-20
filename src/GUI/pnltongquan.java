@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+
 /**
  *
  * @author Takemikazuchi
@@ -29,8 +32,16 @@ public class pnltongquan extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setText("tổng quan");
+
+        jButton1.setText("jButton1");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -40,13 +51,19 @@ public class pnltongquan extends javax.swing.JPanel {
                 .addGap(221, 221, 221)
                 .addComponent(jLabel1)
                 .addContainerGap(710, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(354, 354, 354))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(135, 135, 135)
                 .addComponent(jLabel1)
-                .addContainerGap(469, Short.MAX_VALUE))
+                .addGap(178, 178, 178)
+                .addComponent(jButton1)
+                .addContainerGap(266, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -61,8 +78,13 @@ public class pnltongquan extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     public static javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

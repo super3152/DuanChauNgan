@@ -11,6 +11,8 @@ import DTO.DTOPhatLuong;
 import DTO.MyCombobox;
 import static GUI.pnlkhachhang.txtTimKiem;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
@@ -18,6 +20,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,14 +37,16 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableModel;
 
 /**
  *
  * @author Takemikazuchi
  */
-public final class pnlnhanvien extends javax.swing.JPanel {
+public class pnlnhanvien extends javax.swing.JPanel {
 
     private void FillNhanVien() {
 
@@ -60,7 +67,7 @@ public final class pnlnhanvien extends javax.swing.JPanel {
             pnlBan[i] = new javax.swing.JPanel();
             lblImgBan[i] = new javax.swing.JLabel();
             lblTenBan[i] = new javax.swing.JLabel();
-            lblTenBan[i].setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+            lblTenBan[i].setFont(new java.awt.Font("Tahoma", 0, 14));
             lblTenBan[i].setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
             if (chucvu.get(i).getQuyen() == 1) {
                 lblTenBan[i].setText("Quản Trị");
@@ -135,6 +142,9 @@ public final class pnlnhanvien extends javax.swing.JPanel {
         Date date = new Date();
         jdcNgayVaoLam.setDate(date);
         jdcNgaySinh.setDate(date);
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String strDate = formatter.format(date);
+        txtNgayPhat.setText(strDate);
         BLL.BLLNguoiDung.DoDuLieuVaoCBBNguoiDung(cbbNhanVienPL);
         FillNhanVien();
         BLL.BLLNguoiDung.DoDuLieuVaoCBBLuong(cbbLuong);
@@ -281,7 +291,7 @@ public final class pnlnhanvien extends javax.swing.JPanel {
         txtTienPhat = new javax.swing.JTextField();
         pnlemail2 = new javax.swing.JPanel();
         lblemail2 = new javax.swing.JLabel();
-        jdcNgayPhat = new com.toedter.calendar.JDateChooser();
+        txtNgayPhat = new javax.swing.JTextField();
         pnlnensodienthoai2 = new javax.swing.JPanel();
         lblsodienthoai2 = new javax.swing.JLabel();
         txtTienThuong = new javax.swing.JTextField();
@@ -296,7 +306,7 @@ public final class pnlnhanvien extends javax.swing.JPanel {
         txtSoNgayNghi = new javax.swing.JTextField();
         pnlnensodienthoai3 = new javax.swing.JPanel();
         lblsodienthoai3 = new javax.swing.JLabel();
-        txtGhichu = new javax.swing.JTextField();
+        txtGhichuPL = new javax.swing.JTextField();
         pnlnenhotenkhachhang3 = new javax.swing.JPanel();
         lblhotenkhachhang3 = new javax.swing.JLabel();
         txtSoNgayLam = new javax.swing.JTextField();
@@ -446,6 +456,11 @@ public final class pnlnhanvien extends javax.swing.JPanel {
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/IMAGE/maintenance_20px.png"))); // NOI18N
         jButton2.setText("Sửa N.Viên");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Thêm chức vụ");
 
@@ -1091,7 +1106,7 @@ public final class pnlnhanvien extends javax.swing.JPanel {
         lblemail2.setText("Ngày phát");
         lblemail2.setPreferredSize(new java.awt.Dimension(31, 20));
         pnlemail2.add(lblemail2, java.awt.BorderLayout.PAGE_START);
-        pnlemail2.add(jdcNgayPhat, java.awt.BorderLayout.CENTER);
+        pnlemail2.add(txtNgayPhat, java.awt.BorderLayout.CENTER);
 
         pnlnensodienthoai2.setBackground(new java.awt.Color(255, 255, 255));
         pnlnensodienthoai2.setLayout(new java.awt.BorderLayout());
@@ -1152,7 +1167,7 @@ public final class pnlnhanvien extends javax.swing.JPanel {
         lblsodienthoai3.setText("Ghi chú");
         lblsodienthoai3.setPreferredSize(new java.awt.Dimension(75, 20));
         pnlnensodienthoai3.add(lblsodienthoai3, java.awt.BorderLayout.PAGE_START);
-        pnlnensodienthoai3.add(txtGhichu, java.awt.BorderLayout.CENTER);
+        pnlnensodienthoai3.add(txtGhichuPL, java.awt.BorderLayout.CENTER);
 
         pnlnenhotenkhachhang3.setBackground(new java.awt.Color(255, 255, 255));
         pnlnenhotenkhachhang3.setLayout(new java.awt.BorderLayout());
@@ -1189,6 +1204,11 @@ public final class pnlnhanvien extends javax.swing.JPanel {
         pnlnenhotenkhachhang4.add(txtTong, java.awt.BorderLayout.CENTER);
 
         btnPhatluong.setText("Phát lương");
+        btnPhatluong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPhatluongActionPerformed(evt);
+            }
+        });
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("jLabel2");
@@ -1611,6 +1631,35 @@ public final class pnlnhanvien extends javax.swing.JPanel {
 
         txtTong.setText(BLL.ChuyenDoi.DinhDangTien(tongLuong1));
     }//GEN-LAST:event_txtTienPhatKeyReleased
+
+    private void btnPhatluongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhatluongActionPerformed
+         MyCombobox mb = (MyCombobox) cbbNhanVienPL.getSelectedItem();
+        int MaLoaiNV =Integer.parseInt(mb.Value.toString());
+        
+         String NgayPhat=txtNgayPhat.getText();
+        String SoNgayDiLam = txtSoNgayLam.getText();
+        String SoNgayNghi = txtSoNgayNghi.getText();
+        double TT =ChuyenDoi.ChuyenSangSo(txtTienThuong.getText());
+        double TP =ChuyenDoi.ChuyenSangSo(txtTienPhat.getText());
+        DecimalFormat formatter = new DecimalFormat("#########");
+        String TienThuong = formatter.format(TT);       
+        String TienPhat = formatter.format(TP);
+         String GhiChu = txtGhichuPL.getText();
+         MyCombobox mb1 = (MyCombobox) cbbLuong.getSelectedItem();
+        int MaLuong =Integer.parseInt(mb1.Value.toString());
+        double T =ChuyenDoi.ChuyenSangSo(txtTong.getText());
+        String Tong = formatter.format(T);
+        if (BLL.BLLNguoiDung.KiemTraPhatLuong(MaLoaiNV, NgayPhat, SoNgayDiLam, SoNgayNghi, TienThuong, TienPhat, GhiChu, MaLuong,Tong)) {
+            DTO.DTOPhatLuong pl = new DTO.DTOPhatLuong(MaLoaiNV, NgayPhat, SoNgayDiLam, SoNgayNghi, TienThuong, TienPhat, GhiChu, MaLuong, Tong);
+            BLL.BLLNguoiDung.PhatLuong(pl);
+            ThongBaoCanhBao.ThongBao("Phát lương thành công", "Thông Báo");
+             BLL.BLLPhatLuong.Hienthiphatluong(tblPhatluong);
+        }
+    }//GEN-LAST:event_btnPhatluongActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
     private void LamMoiNhanVien() {
         txtHoTen.setText("");
         txtsodienthoai.setText("");
@@ -1665,7 +1714,6 @@ public final class pnlnhanvien extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
-    private com.toedter.calendar.JDateChooser jdcNgayPhat;
     private com.toedter.calendar.JDateChooser jdcNgaySinh;
     private com.toedter.calendar.JDateChooser jdcNgayVaoLam;
     private javax.swing.JLabel lblAnhDaiDien;
@@ -1753,11 +1801,12 @@ public final class pnlnhanvien extends javax.swing.JPanel {
     private javax.swing.JTextField txtCMND;
     private javax.swing.JTextField txtDiaChi;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtGhichu;
+    private javax.swing.JTextField txtGhichuPL;
     private javax.swing.JTextField txtHoTen;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtMatKhau;
     private javax.swing.JTextPane txtMoTa;
+    private javax.swing.JTextField txtNgayPhat;
     private javax.swing.JTextField txtSoNgayLam;
     private javax.swing.JTextField txtSoNgayNghi;
     private javax.swing.JTextField txtTenDangNhap;

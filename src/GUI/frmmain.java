@@ -210,6 +210,11 @@ public class frmmain extends javax.swing.JFrame implements ActionListener{
                 btnbanhangMouseExited(evt);
             }
         });
+        btnbanhang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbanhangActionPerformed(evt);
+            }
+        });
 
         btnsanpham.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnsanpham.setForeground(new java.awt.Color(255, 255, 255));
@@ -236,6 +241,11 @@ public class frmmain extends javax.swing.JFrame implements ActionListener{
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btndonhangMouseExited(evt);
+            }
+        });
+        btndonhang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndonhangActionPerformed(evt);
             }
         });
 
@@ -592,7 +602,7 @@ public class frmmain extends javax.swing.JFrame implements ActionListener{
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
       jPanel2.removeAll();
-        jPanel2.add(bh);
+        jPanel2.add(sp);
         jPanel2.validate();
        
     }//GEN-LAST:event_formWindowOpened
@@ -747,6 +757,14 @@ public class frmmain extends javax.swing.JFrame implements ActionListener{
     private void btntragopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntragopActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btntragopActionPerformed
+
+    private void btndonhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndonhangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btndonhangActionPerformed
+
+    private void btnbanhangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbanhangActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnbanhangActionPerformed
 
 
     

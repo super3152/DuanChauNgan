@@ -532,6 +532,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="S&#x1eed;a N.Vi&#xea;n"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JSeparator" name="jSeparator4">
             </Component>
@@ -2187,7 +2190,7 @@
                                         </Constraint>
                                       </Constraints>
                                     </Component>
-                                    <Component class="com.toedter.calendar.JDateChooser" name="jdcNgayPhat">
+                                    <Component class="javax.swing.JTextField" name="txtNgayPhat">
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                                           <BorderConstraints direction="Center"/>
@@ -2383,7 +2386,7 @@
                                         </Constraint>
                                       </Constraints>
                                     </Component>
-                                    <Component class="javax.swing.JTextField" name="txtGhichu">
+                                    <Component class="javax.swing.JTextField" name="txtGhichuPL">
                                       <Constraints>
                                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
                                           <BorderConstraints direction="Center"/>
@@ -2480,6 +2483,9 @@
                                   <Properties>
                                     <Property name="text" type="java.lang.String" value="Ph&#xe1;t l&#x1b0;&#x1a1;ng"/>
                                   </Properties>
+                                  <Events>
+                                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPhatluongActionPerformed"/>
+                                  </Events>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel2">
                                   <Properties>
