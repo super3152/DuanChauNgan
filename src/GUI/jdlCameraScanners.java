@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import static GUI.pnlbanhang.panelcam;
+import static GUI.frmmain.panelcam;
 
 
 

@@ -70,13 +70,9 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Takemikazuchi
  */
-public class pnlbanhang extends javax.swing.JPanel implements Runnable, ThreadFactory {
+public class pnlbanhang extends javax.swing.JPanel  {
 
-    public static WebcamPanel panelcam = null;
-    private Webcam webcam = null;
-
-    private static final long serialVersionUID = 6441489157408381878L;
-    private Executor executor = Executors.newSingleThreadExecutor(this);
+   
     public static int MaHD;
     public static String SoHoaDon;
 
@@ -93,14 +89,7 @@ public class pnlbanhang extends javax.swing.JPanel implements Runnable, ThreadFa
 
         initComponents();
 
-        Dimension size = WebcamResolution.QVGA.getSize();
-        webcam = Webcam.getWebcams().get(0);
-
-        webcam.setViewSize(size);
-        panelcam = new WebcamPanel(webcam);
-        panelcam.setPreferredSize(size);
-        panelcam.setFPSDisplayed(true);
-        executor.execute(this);
+       
         if (SoHoaDon == null) {
             FillSanPhamHayDung();
             menu.add(panel);
@@ -1494,87 +1483,5 @@ public class pnlbanhang extends javax.swing.JPanel implements Runnable, ThreadFa
     public static javax.swing.JTextField txtUuDai;
     // End of variables declaration//GEN-END:variables
 
-    @Override
-    public void run() {
-
-        do {
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (NullPointerException ex) {
-
-            }
-
-            Result result = null;
-            BufferedImage image = null;
-
-            if (webcam.isOpen()) {
-                if ((image = webcam.getImage()) == null) {
-                    continue;
-                }
-            }
-
-            LuminanceSource source = new BufferedImageLuminanceSource(image);
-            BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
-
-            try {
-                result = new MultiFormatReader().decode(bitmap);
-            } catch (NotFoundException e) {
-                //No result...
-            } catch (NullPointerException ex) {
-
-            }
-
-            if (result != null) {
-                jTextField13.setText(result.getText());
-                String MaSP = result.getText();
-                
-                double tongTien = BLL.BLLHoaDon.DoHoaDonKhiQuetScan(tblChiTietHoaDon, MaSP);
-                txtTongTien.setText(BLL.ChuyenDoi.DinhDangTien(tongTien));
-                for (int i = 0; i < tblChiTietHoaDon.getRowCount(); i++) {
-                    double TongUuDai = BLL.ChuyenDoi.ChuyenTien(txtUuDai.getText());
-                    txtUuDai.setText(ChuyenDoi.DinhDangTien(TongUuDai));
-                }
-
-                if (txtSoHoaDon.getText().equals("")) {
-
-                    txtSoHoaDon.setText(BLL.BLLHoaDon.TaoSoHoaDon());
-
-                }
-
-                try {
-
-                    // Open an audio input stream.
-                    URL url = this.getClass().getClassLoader().getResource("MP3/beep.wav");
-                    AudioInputStream audioIn = AudioSystem.getAudioInputStream(url);
-                    // Get a sound clip resource.
-                    Clip clip = AudioSystem.getClip();
-                    // Open audio clip and load samples from the audio input stream.
-                    clip.open(audioIn);
-                    clip.start();
-                } catch (UnsupportedAudioFileException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (LineUnavailableException e) {
-                    e.printStackTrace();
-                }
-
-                try {
-                    Thread.sleep(1500);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(pnlkhachhang.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-            }
-        } while (true);
-    }
-
-    @Override
-    public Thread newThread(Runnable r) {
-        Thread t = new Thread(r, "My Thread");
-        t.setDaemon(true);
-        return t;
-    }
+   
 }
